@@ -11,17 +11,19 @@ router.get('/messages', async(req, res) => {
     const messages = await db.query(`SELECT message_text, firstname FROM messages INNER JOIN users ON messages.user_id = users.id`);
 
     const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
+  
     if(!decoded) {
       return res.status(401).json('Unauthorized');
     }
 
     res.json(messages.rows);
   } catch (err) {
+    console.log(err);
     res.status(500).send(err.message);
   }
 });
 
-router.post('/save/messages', async (req, res) => {
+router.post('/send/messages', async (req, res) => {
   const {id, text, username} = req.body;
   const date = new Date();
   const io = req.app.get('socketio');
