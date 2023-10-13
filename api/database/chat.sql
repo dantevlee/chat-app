@@ -1,5 +1,3 @@
-CREATE DATABASE chat_app;
-
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     firstName VARCHAR(225) NOT NULL,
