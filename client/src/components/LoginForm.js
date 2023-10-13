@@ -21,7 +21,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
       const response = await axios.post("https://chat-rest.onrender.com/api/login", loginBody);
 
       if (response.status === 400) {
-        setError(response.data);
+        setError('User not found or password is incorrect.');
         return;
       }
   
@@ -36,7 +36,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
       }
 
     } catch(err) {
-      setError(err.message)
+      setError('An error occurred please try again later.')
     }
 
    
