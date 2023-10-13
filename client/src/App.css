@@ -1,6 +1,9 @@
-/* .card-bordered {
+.card-bordered {
   border: 1px solid #ebebeb;
-} */
+  border-radius: 10px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
 
 .card {
   border: 0;
@@ -11,19 +14,17 @@
 }
 
 body {
-  background-color:	rgb(104,104,104);
+  background-color:#f4f4f6;
 }
 
 .card-header {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
   align-items: center;
   padding: 15px 20px;
-  background-color: transparent;
+  background-color: #fff;
   border-bottom: 1px solid rgba(77, 82, 89, 0.07);
+  border-radius: 8px 8px 0 0;
 }
 
 .card-header .card-title {
@@ -41,12 +42,13 @@ h4.card-title {
 }
 
 .card-title {
-  font-family: Roboto, sans-serif;
-  font-weight: 300;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: 600;
   line-height: 1.5;
   margin-bottom: 0;
   padding: 15px 20px;
   border-bottom: 1px solid rgba(77, 82, 89, 0.07);
+  border-radius: 8px 8px 0 0;
 }
 
 .ps-container {
@@ -62,23 +64,25 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: Roboto, sans-serif;
-  font-weight: 300;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: 600;
 }
 
 .text-info {
-  color: #48b0f7 !important;
+  color: #007bff !important;
 }
 
 .users {
   justify-content: center;
+  
 }
 
 .bubble {
-  background-color: #afb6cb33;
-  border-radius: 5px;
-  padding: 5px;
-  margin-bottom: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 15px; 
+  padding: 10px;
+  margin-bottom: 10px;
   max-width: 75%;
   display: flex;
   flex-direction: column;
@@ -86,5 +90,5 @@ textarea {
 }
 
 .bubble:hover {
-  background-color: #e2edf7;
+  background-color: #0056b3;
 }

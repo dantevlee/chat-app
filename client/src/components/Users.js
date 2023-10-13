@@ -11,7 +11,7 @@ const Users = ({ users }) => {
         <div className="card card-bordered">
           <div className="card-header">
             <h4 className="card-title">
-              <strong>Users</strong>
+              <strong>Online</strong>
             </h4>
           </div>
           <div
@@ -19,7 +19,8 @@ const Users = ({ users }) => {
             id="chat-content"
             style={{
               overflow: "scroll !important",
-              height: "400px !important",
+              width: "300px", 
+              height: "1000px", 
             }}
           >
             <div>
