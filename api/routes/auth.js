@@ -55,6 +55,10 @@ router.post(`/login`, async (req, res) => {
       ]);
     }
 
+    if (!isMatch) {
+      return res.status(400).json("Incorrect password");
+    }
+
     const jsonPayload = {
       userId: signedInUser.rows[0].id,
       firstName: signedInUser.rows[0].firstName,

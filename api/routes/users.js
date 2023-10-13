@@ -8,10 +8,8 @@ router.get('/users', async(req, res) => {
 
   try {
     const token = req.headers.token;
-
     const decoded = jwt_decode(token);
-    console.log('decoded', decoded);
-
+ 
     const user = await db.query('SELECT firstName FROM users WHERE id = $1', [decoded.userId]);
 
     const payload = jwt.verify(token, process.env.TOKEN_SECRET);
@@ -21,7 +19,6 @@ router.get('/users', async(req, res) => {
     }
     res.json(user.rows);
   } catch(err) {
-    console.log(err);
     res.status(500).send(err.message);
   }
 })

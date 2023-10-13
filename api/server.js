@@ -12,7 +12,7 @@ app.use(cors());
 const io = socket(server);
 app.set("socketio", io);
 
-app.use("/", express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.use(express.json());
 

@@ -1,38 +1,90 @@
-.App {
-  text-align: center;
+/* .card-bordered {
+  border: 1px solid #ebebeb;
+} */
+
+.card {
+  border: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.padding {
+  padding: 3rem !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background-color:	rgb(104,104,104);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card-header {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(77, 82, 89, 0.07);
+}
+
+.card-header .card-title {
+  padding: 0;
+  border: none;
+}
+
+h4.card-title {
+  font-size: 17px;
+}
+
+.card-header > * {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.card-title {
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  margin-bottom: 0;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(77, 82, 89, 0.07);
+}
+
+.ps-container {
+  -ms-touch-action: auto;
+  touch-action: auto;
+  height: 400px !important;
+  overflow: scroll !important;
+  -ms-overflow-style: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+}
+
+.text-info {
+  color: #48b0f7 !important;
+}
+
+.users {
+  justify-content: center;
+}
+
+.bubble {
+  background-color: #afb6cb33;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+  max-width: 75%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.bubble:hover {
+  background-color: #e2edf7;
 }
