@@ -2,7 +2,7 @@ require('dotenv').config();
 const Pool  = require('pg').Pool;
 const { readFileSync } = require('fs');
 
-const sqlCreate = readFileSync('chat.sql');
+const sqlCreate = readFileSync('./database/chat.sql');
 
 const pool = new Pool ({
   host: process.env.HOST, 
