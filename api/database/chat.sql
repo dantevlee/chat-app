@@ -14,7 +14,7 @@ ADD COLUMN last_active_at timestamp without time zone;
 
 CREATE TABLE messages(
      message_id SERIAL PRIMARY KEY,
-	   message_text VARCHAR(225) NOT NULL,
+	 message_text VARCHAR(225) NOT NULL,
      created_at TIMESTAMP NOT NULL,
      user_id int REFERENCES users(id) NOT NULL
     );
