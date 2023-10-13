@@ -1,10 +1,7 @@
 require('dotenv').config();
 const Pool  = require('pg').Pool;
-const { readFileSync } = require('fs');
 
-const sqlCreate = readFileSync('./database/chat.sql');
-
-const pool = new Pool ({
+const client = new Pool ({
   host: process.env.HOST, 
   user: process.env.USER,
   port: 5432,
@@ -12,14 +9,4 @@ const pool = new Pool ({
   database: process.env.DATABASE
 })
 
-pool.connect();
-
-pool.on('connect', client => {
-  client.query(sqlCreate, (err, res) => {
-    if (err) throw err;
-    console.log(res);
-  });
-});
-
-
-module.exports = pool;
+module.exports = client;
