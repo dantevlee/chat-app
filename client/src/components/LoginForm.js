@@ -18,7 +18,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
     };
 
     try {
-      const response = await axios.post("api/login", loginBody);
+      const response = await axios.post("https://chat-rest.onrender.com/api/login", loginBody);
 
       if (response.status === 400) {
         setError(response.data);

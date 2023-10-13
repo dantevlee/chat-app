@@ -21,7 +21,7 @@ const Register = () => {
       password: passwordInputRef.current.value,
     };
 
-    axios.post('api/register', requestBody);
+    axios.post('https://chat-rest.onrender.com/api/register', requestBody);
     history('/');
   }
 

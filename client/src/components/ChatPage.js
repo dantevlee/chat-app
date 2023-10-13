@@ -44,7 +44,7 @@ const ChatPage = ({ setIsLoggedIn }) => {
         token: localStorage.getItem("token"),
       },
     };
-    const response = await axios.get("/api/users/active", header);
+    const response = await axios.get("https://chat-rest.onrender.com/api/users/active", header);
     setUsers(response.data);
   };
 
@@ -54,7 +54,7 @@ const ChatPage = ({ setIsLoggedIn }) => {
         token: localStorage.getItem("token"),
       },
     };
-    const response = await axios.get("/api/messages", header);
+    const response = await axios.get("https://chat-rest.onrender.com/api/messages", header);
     setMessages(response.data);
   };
 
@@ -64,7 +64,7 @@ const ChatPage = ({ setIsLoggedIn }) => {
     try {
       const userEmail = localStorage.getItem("email");
 
-      const response = await axios.post("api/logout", { userEmail });
+      const response = await axios.post("https://chat-rest.onrender.com/api/logout", { userEmail });
 
       if (response.status === 200 || response.status === 201) {
         localStorage.removeItem("token");
@@ -89,7 +89,7 @@ const ChatPage = ({ setIsLoggedIn }) => {
       userName: decoded.firstName,
     };
 
-    axios.post("api/send/messages", message);
+    axios.post("https://chat-rest.onrender.com/api/send/messages", message);
 
     socket.emit("chatMessage", message);
     textInputRef.current.value = "";
