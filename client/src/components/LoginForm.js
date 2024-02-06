@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
+import { Alert } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import chat from "../assets/chat.png";
@@ -8,9 +9,15 @@ const LoginForm = ({ setIsLoggedIn }) => {
   let emailInputRef = useRef();
   let passwordInputRef = useRef();
   const [error, setError] = useState("");
+  const [visitCount, setVisitCount] = useState(1)
+  const [isInitialLoad, setIsInitialLoad] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (visitCount === 1){
+      setIsInitialLoad(true)
+    }
 
     const loginBody = {
       email: emailInputRef.current.value,
@@ -22,6 +29,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
 
       if (response.status === 400) {
         setError('User not found or password is incorrect.');
+        setIsInitialLoad(false)
         return;
       }
   
@@ -35,6 +43,11 @@ const LoginForm = ({ setIsLoggedIn }) => {
         setIsLoggedIn(true);
       }
 
+      setIsInitialLoad(false)
+      if (visitCount > 0){
+        setVisitCount(0)
+      }
+
     } catch(err) {
       setError('An error occurred please try again later.')
     }
@@ -42,8 +55,16 @@ const LoginForm = ({ setIsLoggedIn }) => {
    
   };
 
+  const removeNotification = () => {
+    setIsInitialLoad(false);
+    setVisitCount(0)
+  }
+
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
+       <Alert variant="info" onClose={() => removeNotification()} dismissible>
+          This server is running on a free instance in the cloud that spins down if unused. It may take a few seconds for the first app log-in attempt. Thank you for your patience!
+        </Alert>
       <form
         style={{
           width: 400,
