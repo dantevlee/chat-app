@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, Fragment } from "react";
 import axios from "axios";
 import { Alert } from 'react-bootstrap';
 import { Link } from "react-router-dom";
@@ -61,10 +61,8 @@ const LoginForm = ({ setIsLoggedIn }) => {
   }
 
   return (
+    <Fragment>
     <div className="container d-flex justify-content-center align-items-center vh-100">
-       <Alert variant="info" onClose={() => removeNotification()} dismissible>
-          This server is running on a free instance in the cloud that spins down if unused. It may take a few seconds for the first app log-in attempt. Thank you for your patience!
-        </Alert>
       <form
         style={{
           width: 400,
@@ -122,6 +120,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
         </p>
       </form>
     </div>
+    </Fragment>
   );
 };
 
