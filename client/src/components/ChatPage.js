@@ -62,9 +62,9 @@ const ChatPage = ({ setIsLoggedIn }) => {
     e.preventDefault();
 
     try {
-      const userEmail = localStorage.getItem("email");
+      const username = localStorage.getItem("username");
 
-      const response = await axios.post("https://chat-rest.onrender.com/api/logout", { userEmail });
+      const response = await axios.post("https://chat-rest.onrender.com/api/logout", { username });
 
       if (response.status === 200 || response.status === 201) {
         localStorage.removeItem("token");

@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import chat from "../assets/chat.png";
 
 const LoginForm = ({ setIsLoggedIn }) => {
-  let emailInputRef = useRef();
+  let usernameInputRef = useRef();
   let passwordInputRef = useRef();
   const [error, setError] = useState("");
   const [visitCount, setVisitCount] = useState(1);
@@ -20,7 +20,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
     }
 
     const loginBody = {
-      email: emailInputRef.current.value,
+      username: usernameInputRef.current.value,
       password: passwordInputRef.current.value,
     };
 
@@ -40,7 +40,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
 
       localStorage.setItem("token", user);
 
-      localStorage.setItem("email", response.data.email);
+      localStorage.setItem("username", response.data.username);
 
       if (response.status === 200) {
         setIsLoggedIn(true);
@@ -94,15 +94,15 @@ const LoginForm = ({ setIsLoggedIn }) => {
           {error && <div className="alert alert-danger">{error}</div>}
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
-              Email Address
+              Username
             </label>
             <input
               required
               type="email"
               className="form-control"
               id="email"
-              placeholder="Email..."
-              ref={emailInputRef}
+              placeholder="Username.."
+              ref={usernameInputRef}
             />
           </div>
           <div className="mb-3">
