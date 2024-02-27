@@ -1,12 +1,13 @@
 import React from "react";
 
 const Channels = () =>{
+  return (
   <React.Fragment>
   <div className="col-md-3 pr-0">
     <div className="card card-bordered">
       <div className="card-header">
         <h4 className="card-title">
-          <strong>Online</strong>
+          <strong>Channels</strong>
         </h4>
       </div>
       <div
@@ -25,6 +26,7 @@ const Channels = () =>{
     </div>
   </div>
 </React.Fragment>
+  )
 }
 
 export default Channels
