@@ -59,21 +59,16 @@ const ChatPage = ({ setIsLoggedIn }) => {
     setUsers(response.data);
   };
 
-  const getMessage = async () => {
+  const getMessagesAndChannels = async () => {
     const header = {
       headers: {
         token: localStorage.getItem("token"),
       },
     };
-    const response = await axios.get("https://chat-rest.onrender.com/api/messages", header);
-    setMessages(response.data);
-  };
-
-  const getMessagesAndChannels = async () => {
     try {
       const [messagesResponse, channelsResponse] = await Promise.all([
-        axios.get("https://chat-rest.onrender.com/api/messages"),
-        axios.get("https://chat-rest.onrender.com/api/channels"),
+        axios.get("https://chat-rest.onrender.com/api/messages", header),
+        axios.get("https://chat-rest.onrender.com/api/channels", header),
       ]);
 
       const messagesData = messagesResponse.data;
