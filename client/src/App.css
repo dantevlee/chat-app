@@ -92,3 +92,7 @@ textarea {
 .bubble:hover {
   background-color: #0056b3;
 }
+
+.active-channel {
+  font-weight: bolder;
+}

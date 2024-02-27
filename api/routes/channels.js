@@ -22,3 +22,5 @@ router.get('/channels', async(req, res) => {
     res.status(500).send(err.message);
   }
 });
+
+module.exports = router;
