@@ -19,5 +19,6 @@ app.use(express.json());
 app.use('/api', require('./routes/users'));
 app.use('/api', require('./routes/messages'));
 app.use('/api', require('./routes/auth'));
+app.use('/api', require('./routes/channels'))
 
 server.listen(port, () => console.log(`server is listening on port ${port}`));

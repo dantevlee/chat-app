@@ -11,6 +11,10 @@ import Channels from "./Channels";
 const ChatPage = ({ setIsLoggedIn }) => {
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [channels, setChannels] = useState([]);
+  const [selectedChannel, setSelectedChannel] = useState("");
+  const [channelMessages, setChannelMessages] = useState([]);
+  const [showInput, setShowInput] = useState(false)
 
   const socket = io();
 
@@ -32,12 +36,18 @@ const ChatPage = ({ setIsLoggedIn }) => {
     });
 
     getUser();
-    getMessage();
+    getMessagesAndChannels();
 
     return () => {
       socket.off();
     };
   }, [messages, socket]);
+
+  const toggleChannel = (channelName) => {
+    setSelectedChannel(channelName);
+    getChannelMessages(channelName);
+    setShowInput(true)
+  };
 
   const getUser = async () => {
     const header = {
@@ -57,6 +67,29 @@ const ChatPage = ({ setIsLoggedIn }) => {
     };
     const response = await axios.get("https://chat-rest.onrender.com/api/messages", header);
     setMessages(response.data);
+  };
+
+  const getMessagesAndChannels = async () => {
+    try {
+      const [messagesResponse, channelsResponse] = await Promise.all([
+        axios.get("https://chat-rest.onrender.com/api/messages"),
+        axios.get("https://chat-rest.onrender.com/api/channels"),
+      ]);
+
+      const messagesData = messagesResponse.data;
+      const channelsData = channelsResponse.data;
+
+      setMessages(messagesData);
+      setChannels(channelsData);
+     
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getChannelMessages = (channelName) => {
+    const filteredMessages = messages.filter((m) => m.channel === channelName);
+    setChannelMessages(filteredMessages);
   };
 
   const logout = async (e) => {
@@ -112,17 +145,17 @@ const ChatPage = ({ setIsLoggedIn }) => {
               className="container d-flex justify-content-center"
             >
               <Users users={users} />
-              <Channels/>
+              <Channels channels={channels} toggleChannel={toggleChannel} selectedChannel={selectedChannel}/>
               <Messages
                 messages={messages}
               />
             </div>
 
             <div className="container d-flex justify-content-center">
-              <InputMessage
+              { showInput && <InputMessage
                 textInputRef={textInputRef}
                 handleSubmit={submit}
-              />
+              />}
             </div>
           </div>
         </div>
