@@ -93,14 +93,14 @@ const LoginForm = ({ setIsLoggedIn }) => {
           />
           {error && <div className="alert alert-danger">{error}</div>}
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">
+            <label htmlFor="username" className="form-label">
               Username
             </label>
             <input
               required
               type="text"
               className="form-control"
-              id="email"
+              id="username"
               placeholder="Username.."
               ref={usernameInputRef}
             />
