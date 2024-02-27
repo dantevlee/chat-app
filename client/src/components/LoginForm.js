@@ -98,7 +98,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
             </label>
             <input
               required
-              type="email"
+              type="text"
               className="form-control"
               id="email"
               placeholder="Username.."
