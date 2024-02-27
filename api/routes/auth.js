@@ -8,20 +8,20 @@ const bcrypt = require("bcrypt");
 
 router.post("/register", async (req, res) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
-    const user = await db.query(`SELECT * FROM users WHERE email = $1`, [
-      email,
+    const { firstName, lastName, username, password } = req.body;
+    const user = await db.query(`SELECT * FROM users WHERE username = $1`, [
+      username,
     ]);
 
-    if (user.rows.length !== 0)
+    if (user)
       return res.status(401).send("User already exists");
 
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = await db.query(
-      `INSERT INTO users(firstName, lastName, email, password) VALUES($1, $2, $3, $4) RETURNING *`,
-      [firstName, lastName, email, hashedPassword]
+      `INSERT INTO users(firstName, lastName, username, password) VALUES($1, $2, $3, $4) RETURNING *`,
+      [firstName, lastName, username, hashedPassword]
     );
 
     res.json({ newUser });
@@ -31,13 +31,13 @@ router.post("/register", async (req, res) => {
 });
 
 router.post(`/login`, async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
   const io = req.app.get("socketio");
 
   try {
     const signedInUser = await db.query(
-      `SELECT * FROM users WHERE email = $1`,
-      [email]
+      `SELECT * FROM users WHERE username = $1`,
+      [username]
     );
 
     if (signedInUser.rowCount < 1) {
@@ -49,9 +49,9 @@ router.post(`/login`, async (req, res) => {
       signedInUser.rows[0].password
     );
     if (isMatch) {
-      await db.query(`UPDATE users SET last_active_at = $1 WHERE email = $2`, [
+      await db.query(`UPDATE users SET last_active_at = $1 WHERE username = $2`, [
         new Date(),
-        email,
+        username,
       ]);
     }
 
@@ -61,7 +61,7 @@ router.post(`/login`, async (req, res) => {
 
     const jsonPayload = {
       userId: signedInUser.rows[0].id,
-      firstName: signedInUser.rows[0].firstName,
+      username: signedInUser.rows[0].username,
     };
 
     const token = jwt.sign(jsonPayload, process.env.TOKEN_SECRET);
@@ -79,13 +79,13 @@ router.post(`/login`, async (req, res) => {
 });
 
 router.post(`/logout`, async (req, res) => {
-  const { userEmail } = req.body;
+  const { username } = req.body;
   const io = req.app.get("socketio");
 
   try {
-    await db.query("UPDATE users SET last_active_at = $1 WHERE email = $2", [
+    await db.query("UPDATE users SET last_active_at = $1 WHERE username = $2", [
       null,
-      userEmail,
+      username,
     ]);
 
     const stillActive = db.query(
