@@ -1,3 +1,5 @@
+import React from "react";
+
 const Channels = () =>{
   <React.Fragment>
   <div className="col-md-3 pr-0">
