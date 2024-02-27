@@ -13,7 +13,7 @@ router.post("/register", async (req, res) => {
       username,
     ]);
 
-    if (user)
+    if (user.rows.length !== 0)
       return res.status(401).send("User already exists");
 
     const salt = await bcrypt.genSalt();
