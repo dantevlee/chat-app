@@ -6,6 +6,7 @@ import jwt_decode from "jwt-decode";
 import Users from "./Users";
 import Messages from "./Messages";
 import InputMessage from "./InputMessage";
+import Channels from "./Channels";
 
 const ChatPage = ({ setIsLoggedIn }) => {
   const [users, setUsers] = useState([]);
@@ -111,6 +112,7 @@ const ChatPage = ({ setIsLoggedIn }) => {
               className="container d-flex justify-content-center"
             >
               <Users users={users} />
+              <Channels/>
               <Messages
                 messages={messages}
               />
