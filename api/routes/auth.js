@@ -72,7 +72,7 @@ router.post(`/login`, async (req, res) => {
 
     io.emit("login", { activeUsers: onlineUsers.rows });
 
-    res.json({ token, email });
+    res.json({ token, username });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
