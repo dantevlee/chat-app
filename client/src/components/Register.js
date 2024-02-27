@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const Register = () => {
   const firstNameRef = useRef();
   const lastNameRef = useRef();
-  const emailInputRef = useRef();
+  const usernameRef = useRef();
   const passwordInputRef = useRef();
   const history = useNavigate();
 
@@ -17,7 +17,7 @@ const Register = () => {
     const requestBody = {
       firstName: firstNameRef.current.value,
       lastName: lastNameRef.current.value,
-      email: emailInputRef.current.value,
+      username: usernameRef.current.value,
       password: passwordInputRef.current.value,
     };
 
@@ -70,14 +70,14 @@ const Register = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email Address</label>
+          <label htmlFor="email" className="form-label">Username</label>
           <input
             required
-            type="email"
+            type="text"
             className="form-control"
             id="email"
-            placeholder="Email..."
-            ref={emailInputRef}
+            placeholder="Username..."
+            ref={usernameRef}
           />
         </div>
         <div className="mb-3">
