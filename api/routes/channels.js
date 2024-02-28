@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 router.get('/channels', async(req, res) => {
   try {
     const token = req.headers.token;
-    const channels = await db.query(`SELECT channel FROM channels ORDER BY ID`);
+    const channels = await db.query(`SELECT * FROM channels ORDER BY ID`);
 
     const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
   
