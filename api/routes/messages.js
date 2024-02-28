@@ -33,7 +33,7 @@ router.get("/messages", async (req, res) => {
 });
 
 router.post("/send/messages", async (req, res) => {
-  const { messageId, text, username, channelId  } = req.body;
+  const {text, username, channelId  } = req.body;
   const date = new Date();
   const io = req.app.get("socketio");
 
