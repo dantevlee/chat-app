@@ -113,13 +113,14 @@ const ChatPage = ({ setIsLoggedIn }) => {
     let decoded = jwt_decode(token);
     const currentChannel = channels.find((channel) => channel.channel === selectedChannel);
 
+    console.log('decoded', decoded)
     const message = {
       text,
-      id: decoded.userId,
-      userName: decoded.username,
+      username: decoded.username,
       channelid: currentChannel.id
     };
 
+    console.log('message body', message)
     axios.post("https://chat-rest.onrender.com/api/send/messages", message);
 
     socket.emit("chatMessage", message);
