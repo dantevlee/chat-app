@@ -18,7 +18,7 @@ const ChatPage = ({ setIsLoggedIn }) => {
 
   const socket = io();
 
-  useEffect(() => {}, [messages]);
+  useEffect(() => {}, [messages] );
 
   useEffect(() => {
     socket.on("connect", () => {});
@@ -42,6 +42,11 @@ const ChatPage = ({ setIsLoggedIn }) => {
       socket.off();
     };
   }, [messages, socket]);
+
+  useEffect(() => {
+    const filteredMessages = messages.filter((m) => m.channel === selectedChannel);
+    setChannelMessages(filteredMessages);
+  }, [selectedChannel, messages]);
 
   const toggleChannel = (channelName) => {
     setSelectedChannel(channelName);
@@ -121,7 +126,7 @@ const ChatPage = ({ setIsLoggedIn }) => {
 
     axios.post("https://chat-rest.onrender.com/api/send/messages", message);
 
-    socket.emit("chatMessage", message);
+    socket.emit("chatMessage", {message: message.text, user: message.username});
     textInputRef.current.value = "";
   };
 
