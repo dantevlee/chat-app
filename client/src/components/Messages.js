@@ -11,7 +11,7 @@ const Messages = ({ channelMessages }) => {
     return (
       <div key={index} ref={setRef} className="bubble">
         <p style={{ fontWeight: "bold", marginRight: "5px" }}>{chat.user}</p>
-        <p>{chat.text}</p>
+        <p>{chat.message_text}</p>
       </div>
     );
   });
