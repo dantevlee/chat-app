@@ -1,24 +1,21 @@
 import React, { useCallback } from "react";
 
-const Messages = ({ messages }) => {
+const Messages = ({ channelMessages }) => {
   const setRef = useCallback((node) => {
     if (node) {
       node.scrollIntoView({ behavior: "smooth" });
     }
   }, []);
 
-  let chatMessages;
-
-  if (messages) {
-    chatMessages = messages.map((chat, index) => {
-      return (
-        <div key={index} ref={setRef} className="bubble">
-          <p style={{ fontWeight: "bold" }}>{chat.firstname}</p>
-          <p>{chat.message_text}</p>
-        </div>
-      );
-    });
-  }
+  const chatMessages = channelMessages.map((chat, index) => {
+    return (
+      <div key={index} ref={setRef} className="bubble">
+        <p style={{ fontWeight: "bold", marginRight: "5px" }}>{chat.user}</p>
+        <p>{chat.text}</p>
+      </div>
+    );
+  });
+  
   return (
       <div className="col-md-6 pl-0">
         <div className="card card-bordered">

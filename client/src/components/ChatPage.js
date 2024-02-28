@@ -111,11 +111,13 @@ const ChatPage = ({ setIsLoggedIn }) => {
     const text = textInputRef.current.value;
     const token = localStorage.getItem("token");
     let decoded = jwt_decode(token);
+    const currentChannel = channels.find((channel) => channel.channel === selectedChannel);
 
     const message = {
       text,
       id: decoded.userId,
-      userName: decoded.firstName,
+      userName: decoded.username,
+      channelid: currentChannel.id
     };
 
     axios.post("https://chat-rest.onrender.com/api/send/messages", message);
@@ -141,9 +143,7 @@ const ChatPage = ({ setIsLoggedIn }) => {
             >
               <Users users={users} />
               <Channels channels={channels} toggleChannel={toggleChannel} selectedChannel={selectedChannel}/>
-              <Messages
-                messages={messages}
-              />
+              <Messages channelMessages={channelMessages} />
             </div>
 
             <div className="container d-flex justify-content-center">
