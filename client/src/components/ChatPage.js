@@ -18,8 +18,6 @@ const ChatPage = ({ setIsLoggedIn }) => {
 
   const socket = io();
 
-  useEffect(() => {}, [messages] );
-
   useEffect(() => {
     socket.on("connect", () => {});
 
