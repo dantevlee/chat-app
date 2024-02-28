@@ -39,7 +39,7 @@ router.post("/send/messages", async (req, res) => {
 
   try {
     const newMessage = await db.query(
-      `INSERT INTO messages(message_id, message_text, created_at, username, channel_id) VALUES($1, $2, $3) RETURNING *`,
+      `INSERT INTO messages(message_id, message_text, created_at, username, channel_id) VALUES($1, $2, $3, $4, $5) RETURNING *`,
       [messageId, text, date, username, channelId]
     );
 
